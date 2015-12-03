@@ -9,41 +9,40 @@ var Song = function(title, artist, genre) {
 var wonderwall = new Song('Wonderwall', 'Oasis', 'popishthing');
 var stairway = new Song("Stairway to Heaven", "Led Zepplin", 'rock');
 var toxic = new Song("Toxic", "Brittney Spears", 'pop');
-songs.push(wonderwall,stairway,toxic);
+songs.unshift(wonderwall,stairway,toxic);
 
 function displaySongs(){
   var elemString = "";
   for (var i = 0; i < songs.length; i++){
     //  pass in song and song index
     elemString += getElemString(songs[i], i)
-            // '<div class="well container">'
-            // + '<h3>' + songs[i].title + '</h3>'
-            // + '<p><i>' + songs[i].artist + '</i></p><br>'
-            // + '<p><i>' + songs[i].genre + '</i></p><br>'
-            // + "<p id='save" + i +"'><button class='btn btn-sm btn-primary' onclick='removeSong(" + i + ")'>Delete Song</button><button class='btn btn-sm btn-primary' onclick='editSong(" + i + ")'>Edit Song</button>" + songs[i].title + "</p>"
-            // + '</div>';
+
   }
   document.getElementById('songs').innerHTML = elemString;
 }
 displaySongs();
+
 // When someone hits enter or button...run this function
 document.getElementById('newSongForm').addEventListener('submit', function(event){
   //  prevent page refresh
   event.preventDefault();
-  // Getting values from inputs and storing them in variables
+
+    // Getting values from inputs and storing them in variables
   var title = document.getElementById('songTitle').value;
   var artist = document.getElementById('songArtist').value;
   var genre = document.getElementById('songGenre').value;
+
   //  Creating new song obj by calling song constructor
   var mySong = new Song(title, artist, genre);
+
   // Add created song to songs array
-  songs.push(mySong);
+  songs.unshift(mySong);
 // ------------------------------------------------------------------
 document.getElementById('songs').innerHTML += getElemString(mySong, songs.length -1)
 // ---------  Replaces above code ^  --------------------
 displaySongs();
 
-//  CLears out the value after being submitted
+//  Clears out the value after being submitted
   document.getElementById('songTitle').value = "";
   document.getElementById('songArtist').value = "";
   document.getElementById('songGenre').value = "";
